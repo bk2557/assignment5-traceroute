@@ -170,8 +170,8 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, str(pingHost[0]))
-                    tracelist1.insert(0, str(addr[0]))
+                    tracelist1.insert(0, str(gethostbyaddr(destAddr[0])))
+                    tracelist1.insert(0, str(destAddr[0]))
                     tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
                     tracelist2.append(tracelist1)
