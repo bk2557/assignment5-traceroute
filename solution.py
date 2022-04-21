@@ -134,11 +134,12 @@ def get_route(hostname):
                     #Fill in start
                     pingIP = addr
                     pingHost = gethostname()
-                    tracelist1.append(pingHost)
+                    # tracelist1.append(pingHost)
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    tracelist1.append("hostname not returnable")
+                    pingHost = "hostname not returnable"
+                    #tracelist1.append("hostname not returnable")
                     #Fill in end
 
                 if types == 11:
@@ -148,10 +149,11 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here
                     rtt = (timeReceived - startedSelect) * 1000
+                    tracelist1.insert(0, str(pingHost))
                     tracelist1.insert(0, str(addr[0]))
                     tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
-                    #tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -161,7 +163,7 @@ def get_route(hostname):
                     tracelist1.append("Destination Unreachable")
                     tracelist1.insert(0, "*")
                     tracelist1.insert(0, str(ttl))
-                    #tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                     #print(tracelist2)
                     #Fill in end
                 elif types == 0:
@@ -170,22 +172,22 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     rtt = (timeReceived - startedSelect) * 1000
+                    tracelist1.insert(0, str(pingHost))
                     tracelist1.insert(0, str(addr[0]))
                     tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
-                    #tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                     #print(tracelist2)
                     #Fill in end
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
                     tracelist1.append("Exception/Error")
-                    #tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                     #print(tracelist2)
                     #Fill in end
-                tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                 break
-
 
             finally:
                 mySocket.close()
