@@ -48,6 +48,7 @@ def build_packet():
     # Header is type (8), code (8), checksum (16), id (16), sequence (16)
     myChecksum = 0
     # dummy header with 0 checksum
+    ID = os.getpid() & 0xFFF
     # struct - interpret strings as packed binary data
     header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
     data = struct.pack("d", time.time())
@@ -84,8 +85,7 @@ def get_route(hostname):
             # Make a raw socket named mySocket
             icmp = getprotobyname("icmp")
             mySocket = socket(AF_INET, SOCK_RAW, icmp)
-            myID = os.getpid() & 0xFFF
-            build_packet(mySocket, destAddr, myID)
+            #ID = os.getpid() & 0xFFF
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
