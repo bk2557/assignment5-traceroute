@@ -132,7 +132,7 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    pingIP = addr[0]
+                    pingIP = addr
                     pingHost = gethostname()
                     tracelist1.append(pingHost)
                     #Fill in end
@@ -148,11 +148,10 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here
                     rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, str(addr[0]))
-                    tracelist1.insert(0, str(round(rtt)) + ' MS')
+                    tracelist1.insert(0, addr[0])
+                    tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
                     #tracelist2.append(tracelist1)
-                    #print(tracelist2)
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -171,8 +170,8 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, str(addr[0]))
-                    tracelist1.insert(0, str(round(rtt)) + ' MS')
+                    tracelist1.insert(0, addr[0])
+                    tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
                     #tracelist2.append(tracelist1)
                     #print(tracelist2)
@@ -185,11 +184,15 @@ def get_route(hostname):
                     #print(tracelist2)
                     #Fill in end
                 tracelist2.append(tracelist1)
-                print(tracelist2)
 
                 break
+
+
             finally:
                 mySocket.close()
+
+        print(tracelist2)
+
 
 if __name__ == '__main__':
     get_route("google.co.il")
