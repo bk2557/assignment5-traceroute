@@ -135,7 +135,7 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    pingAddr = gethostbyname(addr[0])
+                    pingAddr = gethostbyname(addr)
                     tracelist1.append(pingAddr)
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
@@ -162,9 +162,8 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
-                    rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, addr)
-                    tracelist1.insert(0, rtt)
+                    tracelist1.append("Destination Unreachable")
+                    tracelist1.insert(0, "*")
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
@@ -176,7 +175,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, addr)
+                    tracelist1.insert(0, destAddr)
                     tracelist1.insert(0, rtt)
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
@@ -192,6 +191,7 @@ def get_route(hostname):
                     return tracelist2
                     #Fill in end
                 break
+
             finally:
                 mySocket.close()
 
