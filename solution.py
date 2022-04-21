@@ -132,8 +132,7 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    pingIP = addr
-                    pingHost = gethostname()
+                    pingHost = gethostbyaddr(addr[0])
                     # tracelist1.append(pingHost)
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
@@ -149,7 +148,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here
                     rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, str(pingHost))
+                    tracelist1.insert(0, str(pingHost[0]))
                     tracelist1.insert(0, str(addr[0]))
                     tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
@@ -172,7 +171,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     rtt = (timeReceived - startedSelect) * 1000
-                    tracelist1.insert(0, str(pingHost))
+                    tracelist1.insert(0, str(pingHost[0]))
                     tracelist1.insert(0, str(addr[0]))
                     tracelist1.insert(0, str(round(rtt)) + 'ms')
                     tracelist1.insert(0, str(ttl))
@@ -184,9 +183,9 @@ def get_route(hostname):
                     #If there is an exception/error to your if statements, you should append that to your list here
                     tracelist1.append("Exception/Error")
                     tracelist2.append(tracelist1)
+                    tracelist1.insert(0, str(ttl))
                     #print(tracelist2)
                     #Fill in end
-                    tracelist2.append(tracelist1)
                 break
 
             finally:
