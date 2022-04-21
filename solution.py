@@ -85,7 +85,6 @@ def get_route(hostname):
             # Make a raw socket named mySocket
             icmp = getprotobyname("icmp")
             mySocket = socket(AF_INET, SOCK_RAW, icmp)
-            #ID = os.getpid() & 0xFFF
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
@@ -103,7 +102,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     # SHOULD I APPEND THE OTHER VALUES BEFORE THE REQUEST TIMEOUT VERBAGE? 1. RTT IP REQUEST TIMED OUT?
                     tracelist1.insert(0, "*")
-                    tracelist1.insert(0, ttl)
+                    tracelist1.insert(0, str(ttl))
                     tracelist2.append(tracelist1)
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
@@ -114,7 +113,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist1.insert(0, "*")
-                    tracelist1.insert(0, ttl)
+                    tracelist1.insert(0, str(ttl))
                     tracelist2.append(tracelist1)
                     #Fill in end
             except timeout:
