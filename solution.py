@@ -105,7 +105,6 @@ def get_route(hostname):
                     tracelist1.insert(0, "*")
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
@@ -117,7 +116,6 @@ def get_route(hostname):
                     tracelist1.insert(0, "*")
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
                     #Fill in end
             except timeout:
                 continue
@@ -152,7 +150,6 @@ def get_route(hostname):
                     tracelist1.insert(0, rtt)
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
                     print(tracelist2)
                     #Fill in end
                 elif types == 3:
@@ -164,7 +161,6 @@ def get_route(hostname):
                     tracelist1.insert(0, "*")
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
                     print(tracelist2)
                     #Fill in end
                 elif types == 0:
@@ -177,7 +173,6 @@ def get_route(hostname):
                     tracelist1.insert(0, rtt)
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
                     print(tracelist2)
                     #Fill in end
                 else:
@@ -185,7 +180,6 @@ def get_route(hostname):
                     #If there is an exception/error to your if statements, you should append that to your list here
                     tracelist1.append("Exception/Error")
                     tracelist2.append(tracelist1)
-                    tracelist1.clear()
                     print(tracelist2)
                     #Fill in end
                 break
