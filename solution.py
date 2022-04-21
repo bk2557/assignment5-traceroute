@@ -125,7 +125,8 @@ def get_route(hostname):
             else:
                 #Fill in start
                 #Fetch the icmp type from the IP packet
-                # icmp = recvPacket [20:28]
+                #icmp = recvPacket [20:28]
+                bytes = struct.calcsize("d")
                 icmpType = struct.unpack("d", recvPacket[20:20 + bytes])[0]
                 types = icmpType
                 # return type
