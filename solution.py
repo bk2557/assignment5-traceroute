@@ -106,7 +106,6 @@ def get_route(hostname):
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
-                    return tracelist2
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
@@ -119,7 +118,6 @@ def get_route(hostname):
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
-                    return tracelist2
                     #Fill in end
             except timeout:
                 continue
@@ -135,7 +133,7 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    pingAddr = gethostbyname(addr)
+                    pingAddr = gethostbyname(addr[0])
                     tracelist1.append(pingAddr)
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
