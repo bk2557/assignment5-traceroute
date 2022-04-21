@@ -153,7 +153,6 @@ def get_route(hostname):
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
-                    return tracelist2
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -165,7 +164,6 @@ def get_route(hostname):
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
-                    return tracelist2
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -178,7 +176,6 @@ def get_route(hostname):
                     tracelist1.insert(0, ttl)
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
-                    return tracelist2
                     #Fill in end
                 else:
                     #Fill in start
@@ -186,12 +183,13 @@ def get_route(hostname):
                     tracelist1.append("Exception/Error")
                     tracelist2.append(tracelist1)
                     tracelist1.clear()
-                    return tracelist2
                     #Fill in end
                 break
 
             finally:
                 mySocket.close()
+        return tracelist2
+    print (tracelist2)
 
 if __name__ == '__main__':
     get_route("google.co.il")
